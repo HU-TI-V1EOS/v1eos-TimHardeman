@@ -1,0 +1,4 @@
+__pycache__
+clues
+.clue-templates/*.md
+encrypt_clues.py
