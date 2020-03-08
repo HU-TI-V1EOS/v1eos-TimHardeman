@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 rm -r bestanden
-git restore bestanden
+git checkout HEAD -- bestanden

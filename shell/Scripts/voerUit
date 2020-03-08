@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+# Checks if the correct amount of parameters have been given.
+if [ $# -eq 1 ] ; then
+
+	case "$1" in
+
+		# If the given file is a py file, run it using python.
+		*.py)
+		python3 $1
+		;;
+
+		# If the given file is a sh file, run it using bash.
+		*.sh)
+		bash $1
+		;;
+
+		# If the given file is a cc file, print the text using cat.
+		*.cc)
+		cat $1
+		;;
+
+		# If the given file is another type of file, echo the correct usage of the script.
+		*) 
+		echo 'Usage voerUit <file.[py|sh|cc]>'
+		;;
+	esac
+
+# If an incorrect amount of parameters have been given, echo the correct usage of the script.
+else echo 'Usage voerUit <file.[py|sh|cc]>'
+fi

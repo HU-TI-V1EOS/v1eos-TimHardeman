@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Checks if the correct amount of parameters have been given.
+if [ $# -eq 3 ] ; then
+
+	# Removes the given logfile if it already exists, then creates it.
+	rm -f $3
+	touch $3
+
+	# Loops trough the given directory,
+	# testing the given command on the current file and appending the exit code to the given file. 
+	for i in $(find $1); do
+		$2 $i > /dev/null 2>/dev/null
+		echo $i $? >> $3 
+	done
+
+# If an incorrect amount of parameters have been given, echo the correct usage of the script.
+else echo "Usage checkStatus <directory> <command> <file>"
+fi

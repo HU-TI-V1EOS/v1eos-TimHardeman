@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Checks if the correct amount of parameters have been given.
+if [ $# -eq 1 ] ; then
+
+	# Makes the directory to move the images to if it doesn't exist yet
+	mkdir -p $1/Afbeeldingen
+	
+	# Finds all jpg and png files, and moves them to the Afbeeldingen directory.
+	find $1 -type f \( -name '*.jpg' -or -name '*.png' \) -exec mv {} $1/Afbeeldingen \; 2>/dev/null
+
+	#Finds all jpg and png files, loops trough them and moves them to the Afbeeldingen directory.
+	#for i in $(find $1 -type f \( -name '*.jpg' -or -name '*.png' \) ) ; do
+                #mv $i $1/Afbeeldingen 2>/dev/null
+	#done
+
+# If an incorrect amount of parameters have been given, echo the correct usage of the script.
+else echo 'Usage sorteerAfbeeldingen <directory>'
+fi
+
+

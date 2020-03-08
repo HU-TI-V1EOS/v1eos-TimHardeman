@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Checks if the correct amount of parameters have been given.
+if [ $# -eq 1 ] ; then
+
+	# Finds all jpg files in the given directory,
+	# loops trough them and converts them to PNG files with a max size of 128x128.
+	for i in $(find $1 -name "*.jpg") ; do
+		file="${i%%.*}"
+		convert $i -resize 128x128 "$file.png" 2>/dev/null
+	done 
+
+# If an incorrect amount of parameters have been given, echo the correct usage of the script.
+else echo "Usage naarPNG <directory>"
+fi

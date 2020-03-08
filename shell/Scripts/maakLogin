@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# Checks if the correct amount of parameters have been given.
+if [ $# -eq 1 ] ; then
+
+	# Asks the user for their name.
+	echo Enter name:
+	read name
+
+	# If no name was given, use their hostname as name.
+	if [ -z $name ]; then
+		name=$(whoami)
+	fi
+
+	# Asks the user for their password until the same one has been entered twice and is at least 8 characters.
+	while [ true ]; do
+		echo Enter password:
+		read -s password
+		echo Confirm password:
+		read -s password2
+
+		if [ $password == $password2 ] && [ ${#password} -gt 7 ]; then
+			break
+		fi
+	done
+
+	# Adds the name and the hashed version of the password to the given file.
+	echo -n $name " " >> $1
+	echo $password | md5sum  >> $1 
+
+# If an incorrect amount of parameters have been given, echo the correct usage of the script.
+else echo "Usage maakLogin <file>"
+fi
